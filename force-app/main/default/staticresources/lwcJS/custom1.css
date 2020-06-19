@@ -1,0 +1,25 @@
+lightning-primitive-cell-factory .slds-truncate{
+	/*overflow:visible;*/
+    white-space: unset;
+}
+.slds-th__action-button { display: none; }
+
+
+.picklist-container{
+    width : 90%;
+    margin: 0 auto;
+}
+
+.customfield-container{
+    width : 90%;
+    margin: 0 auto;
+}
+
+.picklist-container .slds-dropdown{
+    position: relative !important;
+    z-index: 99 !important;
+}
+
+[lightning-combobox_combobox-host]{
+    /*margin-bottom: 17px;*/
+}

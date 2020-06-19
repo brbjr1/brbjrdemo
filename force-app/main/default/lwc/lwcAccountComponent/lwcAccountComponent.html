@@ -1,0 +1,17 @@
+<template>
+
+       <template if:true={showSpinner}>
+        <lightning-spinner alternative-text="Loading" size="large"></lightning-spinner>
+    </template>
+    <template if:true={error}>
+        <div style="color: Red; font-weight: bold;">
+            <lightning-formatted-rich-text value={error}></lightning-formatted-rich-text>
+        </div>
+    </template>
+
+    Name: {name} <br/>
+    my User Option: {myUserOption} <br/>
+
+
+
+</template>

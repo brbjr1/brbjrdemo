@@ -1,0 +1,13 @@
+<template>
+    <lightning-card title="Search" icon-name="standard:search">
+        <div class="slds-m-around_medium flex-container">
+
+            <div class="flex-section">
+                <c-lwc-multi-select onchange={handlechange} data-fname="nomtype" label="Account Record Type" dropdown-length="10" options={accountRecordTypesOptions}></c-lwc-multi-select>
+
+            </div>
+        </div>
+
+
+    </lightning-card>
+</template>

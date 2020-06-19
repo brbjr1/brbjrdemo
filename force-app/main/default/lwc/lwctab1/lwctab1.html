@@ -1,0 +1,125 @@
+<template>
+
+    <template if:true={showSpinner}>
+        <lightning-spinner alternative-text="Loading" size="large"></lightning-spinner>
+    </template>
+    <template if:true={error}>
+        <div style="color: Red; font-weight: bold;">
+            <lightning-formatted-rich-text value={error}></lightning-formatted-rich-text>
+        </div>
+    </template>
+    <template if:true={initialLoadComplete}>
+        <lightning-card class="myclass">
+            <h3 slot="title">
+                <lightning-layout horizontal-align="spread">
+                    <lightning-layout-item>
+                        <lightning-button label="Refresh" title="Refresh" variant="brand" icon-name="action:refresh" onclick={handleRefreshPage} class="slds-m-left_x-small"></lightning-button>
+                    </lightning-layout-item>
+                    <lightning-layout-item>
+                        <lightning-button-icon icon-name="utility:settings" onclick={handleShowSettings} alternative-text="Settings"></lightning-button-icon>
+                    </lightning-layout-item>
+                </lightning-layout>
+            </h3>
+
+            <lightning-card>
+                <h3 slot="title">
+                    Scheduled Jobs
+                </h3>
+                <lightning-button label="View All" slot="actions" onclick={scheduleInfo.handleViewAllSchedule}></lightning-button>
+                <lightning-layout multiple-rows="true">
+                    <lightning-layout-item size="12" class="slds-p-vertical_none slds-p-horizontal_small">
+                        <template if:true={scheduleInfo.data}>
+                            <lightning-datatable key-field="id"
+                                                 data={scheduleInfo.data}
+                                                 columns={scheduleInfo.columns}
+                                                 onsort={scheduleInfo.handleSortdata}
+                                                 sorted-by={scheduleInfo.sortBy}
+                                                 sorted-direction={scheduleInfo.sortDirection}
+                                                 hide-checkbox-column>
+                            </lightning-datatable>
+                            <p class="slds-m-vertical_medium content">
+                                Displaying {scheduleInfo.startingRecord} to {scheduleInfo.endingRecord} of {scheduleInfo.totalRecountCount} records.
+                                Page {scheduleInfo.page} of {scheduleInfo.totalPage}.
+                            </p>
+                            <c-paginator-bottom onprevious={scheduleInfo.previousHandler}
+                                                onnext={scheduleInfo.nextHandler}
+                                                onfirst={scheduleInfo.firstHandler}
+                                                onlast={scheduleInfo.lastHandler}
+                                                currentpage={scheduleInfo.page}
+                                                totalrecords={scheduleInfo.totalRecountCount}
+                                                pagesize={scheduleInfo.pageSizeValue}>
+                            </c-paginator-bottom>
+                        </template>
+                    </lightning-layout-item>
+                </lightning-layout>
+            </lightning-card>
+            <lightning-card>
+                <h3 slot="title">
+                    Apex Jobs
+                </h3>
+                <lightning-button label="View All" slot="actions" onclick={apexjobInfo.handleViewAll}></lightning-button>
+                <lightning-layout multiple-rows="true">
+                    <lightning-layout-item size="12" class="slds-p-vertical_none slds-p-horizontal_small">
+                        <template if:true={apexjobInfo.data}>
+                            <lightning-datatable key-field="id"
+                                                 data={apexjobInfo.data}
+                                                 columns={apexjobInfo.columns}
+                                                 onsort={apexjobInfo.handleSortdata}
+                                                 sorted-by={apexjobInfo.sortBy}
+                                                 sorted-direction={apexjobInfo.sortDirection}
+                                                 hide-checkbox-column>
+                            </lightning-datatable>
+                            <p class="slds-m-vertical_medium content">
+                                Displaying {apexjobInfo.startingRecord} to {apexjobInfo.endingRecord} of {apexjobInfo.totalRecountCount} records.
+                                Page {apexjobInfo.page} of {apexjobInfo.totalPage}.
+                            </p>
+                            <c-paginator-bottom onprevious={apexjobInfo.previousHandler}
+                                                onnext={apexjobInfo.nextHandler}
+                                                onfirst={apexjobInfo.firstHandler}
+                                                onlast={apexjobInfo.lastHandler}
+                                                currentpage={apexjobInfo.page}
+                                                totalrecords={apexjobInfo.totalRecountCount}
+                                                pagesize={apexjobInfo.pageSizeValue}>
+                            </c-paginator-bottom>
+                        </template>
+                    </lightning-layout-item>
+                </lightning-layout>
+            </lightning-card>
+
+            <lightning-card>
+                <h3 slot="title">
+                    Accounts
+                </h3>
+                <lightning-button label="View All" slot="actions" onclick={accountInfo.handleViewAll}></lightning-button>
+                <lightning-layout multiple-rows="true">
+                    <lightning-layout-item size="12" class="slds-p-vertical_none slds-p-horizontal_small">
+                        <template if:true={accountInfo.data}>
+                            <lightning-datatable key-field="id"
+                                                 data={accountInfo.data}
+                                                 columns={accountInfo.columns}
+                                                 onsort={accountInfo.handleSortdata}
+                                                 sorted-by={accountInfo.sortBy}
+                                                 sorted-direction={accountInfo.sortDirection}
+                                                 hide-checkbox-column>
+                            </lightning-datatable>
+                            <p class="slds-m-vertical_medium content">
+                                Displaying {accountInfo.startingRecord} to {accountInfo.endingRecord} of {accountInfo.totalRecountCount} records.
+                                Page {accountInfo.page} of {accountInfo.totalPage}.
+                            </p>
+                            <c-paginator-bottom onprevious={accountInfo.previousHandler}
+                                                onnext={accountInfo.nextHandler}
+                                                onfirst={accountInfo.firstHandler}
+                                                onlast={accountInfo.lastHandler}
+                                                currentpage={accountInfo.page}
+                                                totalrecords={accountInfo.totalRecountCount}
+                                                pagesize={accountInfo.pageSizeValue}>
+                            </c-paginator-bottom>
+                        </template>
+                    </lightning-layout-item>
+                </lightning-layout>
+            </lightning-card>
+
+        </lightning-card>
+
+    </template>
+</template>
